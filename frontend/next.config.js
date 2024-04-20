@@ -14,6 +14,9 @@ const nextConfig = {
         hostname: 'images.pexels.com',
       }
     ],
+    domains: [
+      "smiling-nurture-11f281b589.media.strapiapp.com"
+    ]
   },
 }
 
