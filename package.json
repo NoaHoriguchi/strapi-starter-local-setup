@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "concurrently": "^8.2.2",
+    "next-auth": "^4.24.7",
     "npm-check-updates": "^16.14.15"
   }
 }
