@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
@@ -17,18 +18,26 @@
     "@types/qs": "^6.9.12",
     "@types/react": "18.2.64",
     "@types/react-dom": "18.2.21",
+    "bcrypt": "^5.1.1",
     "classnames": "^2.5.1",
+    "consts": "^0.0.2",
+    "cookies-next": "^4.1.1",
+    "mongoose": "^8.3.2",
     "negotiator": "^0.6.3",
     "next": "^14.1.3",
-    "next-auth": "^4.24.7",
+    "next-auth": "^5.0.0-beta.17",
     "qs": "^6.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-markdown": "^9.0.1",
+    "react-router-dom": "^6.23.0",
     "react-slideshow-image": "^4.3.0",
+    "recharts": "^2.12.6",
     "remark-gfm": "^4.0.0",
-    "typescript": "5.4.2"
+    "typescript": "5.4.2",
+    "universal-cookie": "^7.1.4",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.18",

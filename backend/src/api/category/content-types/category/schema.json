@@ -27,6 +27,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "article_ens": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article-en.article-en",
+      "mappedBy": "category"
     }
   }
 }

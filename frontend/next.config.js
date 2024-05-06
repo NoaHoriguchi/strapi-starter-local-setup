@@ -7,7 +7,7 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         port: '1337',
-        pathname: '/uploads/**',
+        pathname: '/uploads/**/*',
       },
       {
         protocol: 'https',
@@ -15,7 +15,8 @@ const nextConfig = {
       }
     ],
     domains: [
-      "smiling-nurture-11f281b589.media.strapiapp.com"
+      "smiling-nurture-11f281b589.media.strapiapp.com",
+      "localhost:1337"
     ]
   },
 }

@@ -799,15 +799,35 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     description: Attribute.Text &
       Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
       Attribute.SetMinMaxLength<{
         maxLength: 256;
       }>;
     slug: Attribute.UID<'api::article.article', 'title'>;
-    cover: Attribute.Media;
+    cover: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     category: Attribute.Relation<
       'api::article.article',
       'manyToOne',
@@ -821,13 +841,23 @@ export interface ApiArticleArticle extends Schema.CollectionType {
         'shared.slider',
         'shared.video-embed'
       ]
-    >;
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     authorsBio: Attribute.Relation<
       'api::article.article',
       'manyToOne',
       'api::author.author'
     >;
-    seo: Attribute.Component<'shared.seo'>;
+    seo: Attribute.Component<'shared.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -839,6 +869,140 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::article.article',
+      'oneToMany',
+      'api::article.article'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiArticleEnArticleEn extends Schema.CollectionType {
+  collectionName: 'article_ens';
+  info: {
+    singularName: 'article-en';
+    pluralName: 'article-ens';
+    displayName: 'Article-En';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required;
+    Slug: Attribute.UID<'api::article-en.article-en', 'Title'> &
+      Attribute.Required;
+    Summary: Attribute.Text & Attribute.Required;
+    Body: Attribute.Blocks & Attribute.Required;
+    Upload_date: Attribute.Date & Attribute.Required;
+    thumbnail: Attribute.Media;
+    Order_id: Attribute.Integer;
+    blocks: Attribute.DynamicZone<
+      [
+        'shared.media',
+        'shared.quote',
+        'shared.rich-text',
+        'shared.slider',
+        'shared.video-embed'
+      ]
+    >;
+    category: Attribute.Relation<
+      'api::article-en.article-en',
+      'manyToOne',
+      'api::category.category'
+    >;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article-en.article-en',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article-en.article-en',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiArticleJaArticleJa extends Schema.CollectionType {
+  collectionName: 'article_jas';
+  info: {
+    singularName: 'article-ja';
+    pluralName: 'article-jas';
+    displayName: 'Article-Ja';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required;
+    Body: Attribute.Blocks & Attribute.Required;
+    Summary: Attribute.Text & Attribute.Required;
+    Upload_date: Attribute.Date & Attribute.Required;
+    Thumbnail: Attribute.Media;
+    Order_id: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    Slug: Attribute.UID<'api::article-ja.article-ja', 'Title'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article-ja.article-ja',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article-ja.article-ja',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiArticleTwArticleTw extends Schema.CollectionType {
+  collectionName: 'article_tws';
+  info: {
+    singularName: 'article-tw';
+    pluralName: 'article-tws';
+    displayName: 'Article-Tw';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required;
+    Body: Attribute.Blocks & Attribute.Required;
+    Summary: Attribute.Text & Attribute.Required;
+    Upload_date: Attribute.Date & Attribute.Required;
+    Thumbnail: Attribute.Media;
+    Order_id: Attribute.Integer & Attribute.Required;
+    Slug: Attribute.UID<'api::article-tw.article-tw', 'Title'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article-tw.article-tw',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article-tw.article-tw',
       'oneToOne',
       'admin::user'
     > &
@@ -903,6 +1067,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::article.article'
     >;
     description: Attribute.Text;
+    article_ens: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::article-en.article-en'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -930,8 +1099,6 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
     description: '';
   };
   options: {
-    increments: true;
-    timestamps: true;
     draftAndPublish: false;
   };
   pluginOptions: {
@@ -966,6 +1133,12 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
         };
       }>;
     footer: Attribute.Component<'layout.footer'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    password: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1163,6 +1336,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article.article': ApiArticleArticle;
+      'api::article-en.article-en': ApiArticleEnArticleEn;
+      'api::article-ja.article-ja': ApiArticleJaArticleJa;
+      'api::article-tw.article-tw': ApiArticleTwArticleTw;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;

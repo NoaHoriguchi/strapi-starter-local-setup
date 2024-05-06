@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_tws",
+  "info": {
+    "singularName": "article-tw",
+    "pluralName": "article-tws",
+    "displayName": "Article-Tw"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Body": {
+      "type": "blocks",
+      "required": true
+    },
+    "Summary": {
+      "type": "text",
+      "required": true
+    },
+    "Upload_date": {
+      "required": true,
+      "type": "date"
+    },
+    "Thumbnail": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
+    },
+    "Order_id": {
+      "type": "integer",
+      "required": true
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title",
+      "required": true
+    }
+  }
+}
